@@ -48,5 +48,6 @@ function generatePassword(lowercasePref, uppercasePref, numbersPref, specialChar
 
 // Write password to the #password input (code provided)
 function writePassword(password) {
-var password = document.querySelector("#password")
+Password = passwordText;
+var passwordText = document.querySelector("#password")
 };
