@@ -5,7 +5,7 @@ var uppercasePref;
 var numbersPref;
 var specialCharacterPref;
 
-//Create arrays for password generation
+//Create arrays for password generation (Travesty Media was used for guidance for this coding step)
 let lowercase = [
   "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
 ];
@@ -18,7 +18,7 @@ let specialCharacter = [
 ];
 let masterArray = [];
   
-//onclick --> initiate function that lets the user enter their data
+//onclick --> initiate function that lets the user enter their data (Triology was used for guidance for this coding step)
 document.getElementById("generate").addEventListener("click", function enterCriteria (length) {
 var length = window.prompt("Enter a password length (8 to 128 characters)","");
 if (8 > length || length > 128) {window.alert ("Your password length doesn't meet the right criteria!")
@@ -29,7 +29,7 @@ var numbersPref = window.confirm("Would you like to include numbers in the passw
 var specialCharacterPref = window.confirm("Would you like to include special characters in the password?");
 });
 
-//generate the password based on the preferences the user entered
+//generate the password based on the preferences the user entered (Trilogy was used for guidance for this coding step)
 function generatePassword(lowercasePref, uppercasePref, numbersPref, specialCharacterPref) {
   if (lowercasePref == true){
   then masterArray.concat(lowercase);
@@ -46,7 +46,7 @@ function generatePassword(lowercasePref, uppercasePref, numbersPref, specialChar
   var password = Math.floor(Math.random)*masterArray.length;
 };
 
-// Write password to the #password input (code provided)
+// Write password to the #password input (Trilogy was used for guidance for this coding step)
 function writePassword(password) {
 var passwordText = password;
 passwordText = document.querySelector("#password")
