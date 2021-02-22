@@ -1,4 +1,4 @@
-//Create arrays for password generation (Trilogy used for guidance on this step)
+//Step 1: Create arrays for password generation (Trilogy used for guidance on this step)
 let lowercase = [
 "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
 ];
@@ -11,11 +11,15 @@ let specialCharacter = [
 ];
 let masterArray = [];
 
-  
-//onclick --> initiate function that lets the user enter their data (Triology was used for guidance for this coding step)
+
+//Step 2: Onclick run the generate password function which creates the password string (Triology was used for guidance for this coding step)
 document.getElementById("generate").addEventListener("click", function generatePassword () {
 
+//Step 2.1: Have the user enter their preference data
+
 let lengthPref=window.prompt("Enter a password length (8 to 128 characters)","");
+
+//Step 2.2: Validate that length fits the parameters
 if (8 > lengthPref || lengthPref > 128) {window.alert ("Your password length doesn't meet the right criteria!")
 return};
 
@@ -25,6 +29,8 @@ let numbersPref = window.confirm("Would you like to include numbers in the passw
 let specialCharacterPref = window.confirm("Would you like to include special characters in the password?");
 
 let finalPass= "";
+
+//Step 2.3: Run loop that generates password string based on preferences
 
 for (let i = 0; i < lengthPref; i++) {
 
@@ -47,11 +53,12 @@ else if (specialCharacterPref == true){
  masterArray=masterArray.concat(specialCharacter);
  }
 
+}
 return finalPass;
 
-}});
+});
 
-// Write password to the #password input (Trilogy was used for guidance for this coding step)
+// Step 3: Write password to the #password input (Trilogy was used for guidance for this coding step)
 var password = generatePassword();
 var passwordText = document.querySelector("#password");
 passwordText.value = password;
