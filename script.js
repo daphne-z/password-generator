@@ -28,15 +28,18 @@ var specialCharacterPref = window.confirm("Would you like to include special cha
 
 console.log(lengthPref, lowercasePref, uppercasePref, numbersPref, specialCharacterPref);
 
+generatePassword();
+
 });
 
 //Step 3: generate the password
 
-function generatePassword(lowercasePref, uppercasePref, numbersPref, specialCharacterPref, lengthPref){
+function generatePassword(lengthPref, lowercasePref, uppercasePref, numbersPref, specialCharacterPref){
 
 //Step 3.1: create the master array (randomIndex) based on pref values
 
 let randomIndex = [];
+var finalPass = "";
 
   if (lowercasePref){
   randomIndex=randomIndex.concat(lowercase.values);
@@ -56,19 +59,15 @@ let randomIndex = [];
   console.log(randomIndex);
   }
 
-
 //Step 2.4: Randomize from the mainArray, loop through the number of times in the  password length pref
-//used Technical Cafe youtube video to understand math.floor in this context
+//used Technical Cafe youtube video to understand math.floor in this context 
+  for (let i = 0; i < lengthPref; i++){
+  finalPass = finalPass + randomIndex.charAt(Math.floor(Math.random() * Math.floor(randomIndex.length-1))); 
 
-var finalPass = "";
-
-for (let i = 0; i < lengthPref; i++){
-finalPass = finalPass + randomIndex.charAt(Math.floor(Math.random() * Math.floor(randomIndex.length-1)));
-  
 }
-
 return finalPass;
   };
+
 
 // Step 3: Write password to the #password input (Trilogy was used for guidance for this coding step)
 var password = generatePassword();
