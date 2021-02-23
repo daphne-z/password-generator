@@ -9,54 +9,66 @@ let number = [1, 2, 3, 4, 5, 6, 7, 8, 9,
 let specialCharacter = [
 "!", "@", "#", "$", "%", "^", "&", "*", "'", "(", ")", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "[", "\\", "]", "_",  "`",  "{", "|", "}",  "~",
 ];
-let masterArray = [];
-
 
 //Step 2: Onclick run the generate password function which creates the password string (Triology was used for guidance for this coding step)
-document.getElementById("generate").addEventListener("click", function generatePassword (lowercase, uppercase, number, specialCharacter, masterArray) {
+document.getElementById("generate").addEventListener("click", function getCriteria () {
 
 //Step 2.1: Have the user enter their preference data
 
-let lengthPref=window.prompt("Enter a password length (8 to 128 characters) or hit enter to accept the default", 15);
+var lengthPref=window.prompt("Enter a password length (8 to 128 characters) or hit enter to accept the default", 15);
 
 //Step 2.2: Validate that length fits the parameters
 if (8 > lengthPref || lengthPref > 128) {window.alert ("Your password length doesn't meet the right criteria!")
 return false};
 
-let lowercasePref = window.confirm("Would you like to include lowercase letters in the password?","");
-let uppercasePref = window.confirm("Would you like to include uppercase letters in the password?","");
-let numbersPref = window.confirm("Would you like to include numbers in the password?","");
-let specialCharacterPref = window.confirm("Would you like to include special characters in the password?");
+var lowercasePref = window.confirm("Would you like to include lowercase letters in the password?","");
+var uppercasePref = window.confirm("Would you like to include uppercase letters in the password?","");
+var numbersPref = window.confirm("Would you like to include numbers in the password?","");
+var specialCharacterPref = window.confirm("Would you like to include special characters in the password?");
 
-//Step 2.3: Populate the master array with concat
+console.log(lengthPref, lowercasePref, uppercasePref, numbersPref, specialCharacterPref);
 
-if (lowercasePref == true){
-masterArray=masterArray.concat(lowercase);
+});
+
+//Step 3: generate the password
+
+function generatePassword(lowercasePref, uppercasePref, numbersPref, specialCharacterPref, lengthPref){
+
+//Step 3.1: create the master array (randomIndex) based on pref values
+
+let randomIndex = [];
+
+  if (lowercasePref){
+  randomIndex=randomIndex.concat(lowercase.values);
+   }
+  
+  if (uppercasePref){
+  randomIndex=randomIndex.concat(uppercase.values);
+  }
+  
+  if (numbersPref){
+  randomIndex=randomIndex.concat(number.values);
+  }
+  
+  if (specialCharacterPref){
+    randomIndex=randomIndex.concat(specialCharacter.values);
+
+  console.log(randomIndex);
   }
 
-else if (uppercasePref == true){
-masterArray=masterArray.concat(uppercase);
-}
 
-else if (numbersPref == true){
-masterArray=masterArray.concat(number);
-}
-
-else if (specialCharacterPref == true){
- masterArray=masterArray.concat(specialCharacter);
-}
-
-//Step 2.4: Randomize from the masterArray, loop through the number of times in the  password length pref
+//Step 2.4: Randomize from the mainArray, loop through the number of times in the  password length pref
+//used Technical Cafe youtube video to understand math.floor in this context
 
 var finalPass = "";
 
 for (let i = 0; i < lengthPref; i++){
-  finalPass = finalPass + masterArray.charAt(Math.floor(Math.random() * Math.floor(masterArray.length-1)));
+finalPass = finalPass + randomIndex.charAt(Math.floor(Math.random() * Math.floor(randomIndex.length-1)));
+  
 }
 
-//step 2.5//return the final password
 return finalPass;
-});
+  };
 
 // Step 3: Write password to the #password input (Trilogy was used for guidance for this coding step)
 var password = generatePassword();
